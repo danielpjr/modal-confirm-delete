@@ -8,6 +8,8 @@
  * @dependencies [jQuery] https://github.com/jquery/jquery
  * @dependencies [Bootstrap] https://github.com/twbs/bootstrap
  * @dependencies [Magnific-Popup] https://github.com/dimsemenov/Magnific-Popup
+ * @dependencies [Animate.css] https://github.com/daneden/animate.css
+ * @dependencies [FortAwesome] https://github.com/FortAwesome/Font-Awesome
  *
  */
 
