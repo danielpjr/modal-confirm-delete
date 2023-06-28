@@ -144,7 +144,7 @@
                         if (typeof _inputs_hidden == 'object') {
                             for (var name in _inputs_hidden) {
                                 _inputs_hidden_container.append(
-                                    `<input type="hidden" name="${name}" value="${_inputs_hidden[name]}" />`
+                                    '<input type="hidden" name="${name}" value="'+ _inputs_hidden[name] +'" />'
                                 )
                             }
                         }
