@@ -27,7 +27,7 @@
                     blockTitle: 'This item can not be deleted.',
                     btnConfirm: 'Yes! Delete',
                     btnDismiss: 'Cancel',
-                    blockBtnDismiss: 'Ok! Got it',
+                    blockBtnDismiss: 'Ok! Got it'
                 }
             },
             options),
@@ -39,7 +39,7 @@
 
             _modal = $(
                 '<div id="ag-generic-delete-modal" ' +
-                '     class="modal-block modal-full-color modal-block-danger modal-block-sm mfp-hide animated flipInX">' + // flipInX | zoomIn
+                '     class="modal-block modal-full-color modal-block-danger modal-block-sm mfp-hide animated flipInX">' +
                 ' <section class="card">' +
                 '  <div class="card-body text-center">' +
                 '    <div class="modal-icon center mb-3">' +
@@ -66,6 +66,7 @@
                 ' <form method="post" action="">' +
                 '  <input type="hidden" name="_method" value="DELETE">' +
                 '  <input type="hidden" name="_token" value="' + $("meta[name='csrf-token']").attr('content') + '">' +
+                '  <div style="visible: hidden" id="inputs_hidden"></div>' +
                 ' </form>' +
                 '</div>'
             );
@@ -121,8 +122,32 @@
 
                             e.preventDefault();
 
-                            _modal.find('form').submit();
+                            var form = _modal.find('form');
+
+                            if (form.data('submitted') === false || form.data('submitted') === undefined) {
+                                form.data('submitted', true);
+
+                                form.submit();
+                            }
                         });
+
+                        /**
+                         * Add input hidden to submit
+                         */
+
+                        const _inputs_hidden_container = _modal.find('#inputs_hidden');
+                        
+                        _inputs_hidden_container.html('');
+                        
+                        const _inputs_hidden = _self.data('modal-inputs-hidden') || [];
+
+                        if (typeof _inputs_hidden == 'object') {
+                            for (var name in _inputs_hidden) {
+                                _inputs_hidden_container.append(
+                                    `<input type="hidden" name="${name}" value="${_inputs_hidden[name]}" />`
+                                )
+                            }
+                        }
                     }
                 }
             });
